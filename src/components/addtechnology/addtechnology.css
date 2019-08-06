@@ -1,0 +1,9 @@
+.add-technology {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  padding: 20px;
+  margin: 40px;
+  border: 2px solid black;
+  width: 500px;
+}

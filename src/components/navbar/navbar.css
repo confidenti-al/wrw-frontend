@@ -1,0 +1,25 @@
+.navbar {
+  width: 100%;
+  height: 60px;
+  background-color: #29354d;
+}
+
+.logout {
+  margin: 0 20px 0 40px;
+}
+
+.login-signup {
+  margin: 0 5px 0 5px;
+}
+
+.user-info {
+  margin: 0 0 0 40px;
+}
+
+body {
+  padding-bottom: 20px;
+}
+
+.navbar {
+  margin-bottom: 20px;
+}

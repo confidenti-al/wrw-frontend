@@ -1,0 +1,9 @@
+.media {
+  border: 1px solid #eee;
+  margin: 10px 0;
+  padding: 10px;
+}
+
+.media-img-size {
+  width: 80px;
+}
