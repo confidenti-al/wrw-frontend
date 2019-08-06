@@ -81,7 +81,16 @@ class CompanyIndex extends Component {
          
       )
     else
-      return(<h3>loading...</h3>)
+      return(
+        <div className="text-center">
+          <div className="spinner-grow text-primary" role="status"></div>
+          <div className="spinner-grow text-secondary" role="status"></div>
+          <div className="spinner-grow text-success" role="status"></div>
+          <div className="spinner-grow text-danger" role="status"></div>
+          <div className="spinner-grow text-warning" role="status"></div>
+          <div className="spinner-grow text-info" role="status"></div>
+       </div>
+      )
   }
 }
 

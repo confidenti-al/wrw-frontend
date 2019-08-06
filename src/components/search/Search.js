@@ -49,7 +49,7 @@ class Search extends React.Component {
     // console.log(name)
     axios.get('https://autocomplete.clearbit.com/v1/companies/suggest?query=:' + name)
       .then((response) => {
-        console.log(response)
+        // console.log(response)
         // return response.json();
       })
     }
