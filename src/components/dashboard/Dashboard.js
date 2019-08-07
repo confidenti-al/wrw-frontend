@@ -79,13 +79,13 @@ class Dashboard extends Component {
 
   render(){
     if(this.props.ready)
-      return(
+      return (
         <div className="container-fluid">
-        {/* <div style={{width: '40%', float:"right"}}><AddCompany getData={this.props.getData}/></div> */}
+          <div className=""><AddCompany getData={this.props.getData}/></div>
           <div className="card-columns">{this.showTheCompanies()}</div>
         </div>  
-      )
-    else
+      ) 
+      else
       return(
         <div className="text-center">
           <div className="spinner-grow text-primary" role="status"></div>

@@ -75,9 +75,11 @@ class CompanyIndex extends Component {
       return(
         
         <div className="container-fluid">
-        {/* <div style={{width: '40%', float:"right"}}><AddCompany getData={this.props.getData}/></div> */}
-            <div className="card-columns">{this.showCompanies()}</div>
-          </div>  
+          
+          <div className="card-columns">{this.showCompanies()}</div>
+          <div className=""><AddCompany getData={this.props.getData}/></div>
+          
+        </div>  
          
       )
     else

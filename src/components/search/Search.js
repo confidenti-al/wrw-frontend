@@ -6,10 +6,12 @@ class Search extends React.Component {
     super(props)
     this.state = { 
       listOfCompanies: [],
+      companiesListClone: [],
       searchField: '',
       companyName: '',
       companySiteUrl: '',
-      companyLogoUrl: '',       
+      companyLogoUrl: '', 
+      apiCompaniesList: []      
     };
   }
 
@@ -17,40 +19,48 @@ class Search extends React.Component {
     axios.get(`http://localhost:5000/api/companies`)
     .then(responseFromApi => {
       this.setState({
-        listOfCompanies: responseFromApi.data, ready: true
+        listOfCompanies: responseFromApi.data,
+        companiesListClone: responseFromApi.data,
+        ready: true
       })
     })
   }
 
   onInputChange=(e)=>{
-    console.log(e.target.name, e.target.value)
+    console.log(e.target.name, e.target.value);
       const { name, value } = e.target;
       this.setState({ [name]: value });
       this.checkForCompany();
     }
 
-    checkForCompany() {
-    const matchedCompany = this.state.listOfCompanies.filter(company => {
-      if (company.companyName.includes(this.state.searchField)) {
-        return true;
-      } else {
-        this.getData(this.value);
-        // console.log(this.value);
-        this.setState({
-          companyName: this.state.companyName,
-          companySiteUrl: this.state.companySiteUrl,
-          companyLogoUrl: this.state.companyLogoUrl,
-        });
-        // console.log(this.state)
-      }
-    })};
+   async checkForCompany() {
+    let filteredCompaniesApi = [];
+      let companyListClone = [...this.state.listOfCompanies];
+      const matchedCompanies = companyListClone.filter((company, i) => {
+      return (company.companyName.toUpperCase().includes(this.state.searchField.toUpperCase()))
+      }  
+    )
+    if(matchedCompanies.length <= 3){
+      let companiesFromApi = await this.getData(this.state.searchField);
+      matchedCompanies.forEach(oneCompany => {
+        companiesFromApi.forEach(apiCompany => {
+          console.log("match this <<<<<< ", oneCompany.companyName.toUpperCase(), " >>>>>>>>>>>>>>>> ", apiCompany.name.toUpperCase(), " ======== ", String(apiCompany.name.toUpperCase()) === String(oneCompany.companyName.toUpperCase()))
+          if(String(apiCompany.name.toUpperCase()) !== String(oneCompany.companyName.toUpperCase())) {
+            filteredCompaniesApi.push(apiCompany);
+          }
+        })
+      })
+
+    }
+    console.log('matched:', matchedCompanies,'filtered:', filteredCompaniesApi)
+
+    this.setState({companiesListClone: matchedCompanies, apiCompaniesList: filteredCompaniesApi});
+  };
 
   getData(name) {
-    // console.log(name)
-    axios.get('https://autocomplete.clearbit.com/v1/companies/suggest?query=:' + name)
+    return axios.get('https://autocomplete.clearbit.com/v1/companies/suggest?query=:' + name)
       .then((response) => {
-        // console.log(response)
-        // return response.json();
+        return response.data;
       })
     }
 
@@ -60,23 +70,23 @@ class Search extends React.Component {
 
   render(){
     return(
-    // not sure what to do with this stuff below
-    //companyName.text(data.name);
-    //companySiteUrl.text(data.domain);
-    //companyLogoUrl.attr('src', data.logo);
     <div className="container">
-      <div className="input-group py-4">
-            <input className="form-control form-control-lg" type="search" id="example-search-input" name="searchField" value={this.state.searchField} onChange={(e)=>{this.onInputChange(e)}} placeholder="enter a company name..." />
-            <span className="input-group-append">
+      <div className="input py-4">
+            <input className="form-control form-control-lg" 
+            type="search" 
+            id="example-search-input" 
+            name="searchField" 
+            value={this.state.searchField} 
+            onChange={(e)=>{this.onInputChange(e)}} 
+            placeholder="enter a company name..." 
+            />
+            {/* <span className="input-group-append">
               <button className="btn btn-outline-secondary disabled" type="button">
                   <i className="fa fa-search"></i>
               </button>
-            </span>
+            </span> */}
       </div>
     </div>
-
-
-    
     )}
 }
 

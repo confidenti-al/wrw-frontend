@@ -50,25 +50,53 @@ class AddCompany extends Component {
 
   render(){
     return(
-      <div>
-        <form className="add-company" onSubmit={this.handleFormSubmit}>
+      
+      <span>
+        {/* <h3 className="card-header">{this.state.companyName}</h3> */}
+        <form className="card-body" onSubmit={this.handleFormSubmit}>
           <label>Company Name:</label>
-          <input type="text" name="companyName" value={this.state.companyName} onChange={ e => this.handleChange(e)}/>
+          <input className="form-control" type="text" name="companyName" value={this.state.companyName} onChange={ e => this.handleChange(e)}/>
           <label>Primary Domain Name (.com, .net, .io, etc.):</label>
-          <input type="text" name="companyDomain" value={this.state.companyDomain} onChange={ e => this.handleChange(e)} />
+          <input className="form-control" type="text" name="companyDomain" value={this.state.companyDomain} onChange={ e => this.handleChange(e)} />
           <label>Root Domain of Company Email (so we can validate employees):</label>
-          <input type="text" name="companyRootEmail" value={this.state.companyRootEmail} onChange={ e => this.handleChange(e)} />
+          <input className="form-control" type="text" name="companyRootEmail" value={this.state.companyRootEmail} onChange={ e => this.handleChange(e)} />
           <label>Company Logo URL:</label>
-          <input type="text" name="companyLogoUrl" value={this.state.companyLogoUrl} onChange={ e => this.handleChange(e)} />
+          <input className="form-control" type="text" name="companyLogoUrl" value={this.state.companyLogoUrl} onChange={ e => this.handleChange(e)} />
           <label>Company Website URL:</label>
-          <input type="text" name="companySiteUrl" value={this.state.companySiteUrl} onChange={ e => this.handleChange(e)} />
+          <input className="form-control" type="text" name="companySiteUrl" value={this.state.companySiteUrl} onChange={ e => this.handleChange(e)} />
           <label>Company LinkedIn URL:</label>
-          <input type="text" name="companyLinkedinUrl" value={this.state.companyLinkedinUrl} onChange={ e => this.handleChange(e)} />
+          <input className="form-control" type="text" name="companyLinkedinUrl" value={this.state.companyLinkedinUrl} onChange={ e => this.handleChange(e)} />
           <label>Company Github Organization URL:</label>
-          <input type="text" name="companyGithubUrl" value={this.state.companyGithubUrl} onChange={ e => this.handleChange(e)} />
-          <input type="submit" value="Submit" />
+          <input className="form-control" type="text" name="companyGithubUrl" value={this.state.companyGithubUrl} onChange={ e => this.handleChange(e)} />
+          <div className="text-right">
+            <input className="btn btn-sm btn-success save-cancel" type="submit" value="Add" />
+            <button className="btn btn-sm btn-secondary save-cancel" onClick={ e => this.props.resetEditingSituation()}>Cancel</button>
+          </div>
         </form>
-      </div>
+      </span>
+      
+      
+      
+      
+      // <div>
+      //   <form className="add-company" onSubmit={this.handleFormSubmit}>
+      //     <label>Company Name:</label>
+      //     <input type="text" name="companyName" value={this.state.companyName} onChange={ e => this.handleChange(e)}/>
+      //     <label>Primary Domain Name (.com, .net, .io, etc.):</label>
+      //     <input type="text" name="companyDomain" value={this.state.companyDomain} onChange={ e => this.handleChange(e)} />
+      //     <label>Root Domain of Company Email (so we can validate employees):</label>
+      //     <input type="text" name="companyRootEmail" value={this.state.companyRootEmail} onChange={ e => this.handleChange(e)} />
+      //     <label>Company Logo URL:</label>
+      //     <input type="text" name="companyLogoUrl" value={this.state.companyLogoUrl} onChange={ e => this.handleChange(e)} />
+      //     <label>Company Website URL:</label>
+      //     <input type="text" name="companySiteUrl" value={this.state.companySiteUrl} onChange={ e => this.handleChange(e)} />
+      //     <label>Company LinkedIn URL:</label>
+      //     <input type="text" name="companyLinkedinUrl" value={this.state.companyLinkedinUrl} onChange={ e => this.handleChange(e)} />
+      //     <label>Company Github Organization URL:</label>
+      //     <input type="text" name="companyGithubUrl" value={this.state.companyGithubUrl} onChange={ e => this.handleChange(e)} />
+      //     <input type="submit" value="Submit" />
+      //   </form>
+      // </div>
     )
   }
 }
